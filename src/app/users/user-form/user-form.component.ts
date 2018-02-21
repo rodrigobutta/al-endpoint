@@ -61,7 +61,7 @@ export class UserFormComponent implements OnInit {
 
       this.usersService.getUser(id)
         .subscribe(
-          user => this.user = user,
+          user => this.user = user as User,
           // user => user,
           response => {
             if (response.status == 404) {
