@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng4tutorial App', () => {
+describe('angular2-registration-login-example-cli App', () => {
   let page: AppPage;
 
   beforeEach(() => {

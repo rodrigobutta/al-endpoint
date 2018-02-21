@@ -1,33 +1,19 @@
-<div class="container">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <hr />
-    <form (ngSubmit)="onSubmit(fm)" #fm="ngForm">
-      <div class="form-group">
-        <label for="name">Item Name:</label>
-        <input type="text" class="form-control" ngModel name="name">
-      </div>
-      <div class="form-group">
-        <label for="price">Item Price:</label>
-        <input type="text" class="form-control" ngModel name="price">
-      </div>
-      <button type="submit" class="btn btn-primary">Add</button>
-    </form>
+﻿<app-nav-bar></app-nav-bar>
 
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
 
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>
-      <tr *ngFor="let item of items">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-      </tr>
-    </table>
-
-
-
+<!-- credits -->
+<div class="text-center">
+    <p>
+        <a href="#" target="_blank">Rodrigo Powered</a>
+    </p>
 
 </div>

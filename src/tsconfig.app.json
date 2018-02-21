@@ -1,10 +1,20 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "baseUrl": "app"
   },
   "exclude": [
     "test.ts",
