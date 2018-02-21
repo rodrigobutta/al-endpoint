@@ -3,31 +3,47 @@
   <form materialize class="col s12" [formGroup]="form" (ngSubmit)="save()">
     <div class="row">
       <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="username" type="email" class="validate"
+               [(ngModel)]="user.username" formControlName="username"
+               [class.invalid]="form.controls['username'].touched && !form.controls['username'].valid">
+        <label for="username"
+               [class.active]="user.username"
+               data-error="Invalid Email">
+          Usuario (Email)
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
         <i class="material-icons prefix">account_circle</i>
-        <input id="name" type="text" class="validate"
-               [(ngModel)]="user.name" formControlName="name"
-               [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid"
+        <input id="firstName" type="text" class="validate"
+               [(ngModel)]="user.firstName" formControlName="firstName"
+               [class.invalid]="form.controls['firstName'].touched && !form.controls['firstName'].valid"
         >
-        <label for="name"
-               [class.active]="user.name"
+        <label for="firstName"
+               [class.active]="user.firstName"
                data-error="Name is required and needs to contain at least 3 chars">
-          Name
+          Nombre
         </label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <i class="material-icons prefix">email</i>
-        <input id="email" type="email" class="validate"
-               [(ngModel)]="user.email" formControlName="email"
-               [class.invalid]="form.controls['email'].touched && !form.controls['email'].valid">
-        <label for="email"
-               [class.active]="user.email"
-               data-error="Invalid Email">
-          Email
+        <i class="material-icons prefix">account_circle</i>
+        <input id="lastName" type="text" class="validate"
+               [(ngModel)]="user.lastName" formControlName="lastName"
+               [class.invalid]="form.controls['lastName'].touched && !form.controls['lastName'].valid"
+        >
+        <label for="lastName"
+               [class.active]="user.lastName"
+               data-error="Name is required and needs to contain at least 3 chars">
+          Apellido
         </label>
       </div>
     </div>
+
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">phone</i>

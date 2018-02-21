@@ -5,8 +5,9 @@
 <table>
   <thead>
   <tr>
-    <th data-field="name">Name</th>
-    <th data-field="name">Email</th>
+    <th data-field="name">Usuario</th>
+    <th data-field="name">Nombre</th>
+    <th data-field="name">Apellido</th>
     <th data-field="name">Editar</th>
     <th data-field="name">Borrar</th>
   </tr>
@@ -14,8 +15,9 @@
 
   <tbody>
     <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
       <td>
         <a [routerLink]="['/users', user.id]">
           <i class="material-icons">mode_edit</i>

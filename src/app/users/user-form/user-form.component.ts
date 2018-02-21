@@ -25,14 +25,17 @@ export class UserFormComponent implements OnInit {
     private usersService: UsersService
   ) {
     this.form = formBuilder.group({
-      name: ['', [
+      firstName: ['', [
         Validators.required,
         Validators.minLength(3)
       ]],
-      email: ['', [
+      lastName: ['', [
+        Validators.required,
+        Validators.minLength(3)
+      ]],
+      username: ['', [
         Validators.required,
         BasicValidators.email
-        //Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
       ]],
       phone: [],
       address: formBuilder.group({
@@ -58,8 +61,8 @@ export class UserFormComponent implements OnInit {
 
       this.usersService.getUser(id)
         .subscribe(
-          // user => this.user = user,
-          user => user,
+          user => this.user = user,
+          // user => user,
           response => {
             if (response.status == 404) {
               this.router.navigate(['NotFound']);

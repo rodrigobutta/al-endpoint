@@ -58,7 +58,8 @@ export class ItemFormComponent implements OnInit {
 
       this.itemsService.getItem(id)
         .subscribe(
-          item => item, // item => this.item = item,
+          // item => item,
+          item => this.item = item,
           response => {
             if (response.status == 404) {
               this.router.navigate(['NotFound']);
