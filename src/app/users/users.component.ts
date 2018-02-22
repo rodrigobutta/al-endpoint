@@ -12,14 +12,37 @@ declare var swal: any;
 export class UsersComponent implements OnInit {
 
   private users: User[] = [];
+  private loadingUsers: boolean = true;
 
   constructor(private usersService: UsersService) { }
 
     ngOnInit() {
-        this.usersService.getUsers()
-            .subscribe(data => this.users = data as User[]);
-            // .subscribe(data => data);
+
+        this.getUsers();
+
     }
+
+
+    getUsers(){
+
+        this.loadingUsers = true;
+
+        this.usersService.getUsers()
+            .subscribe(
+                data => {
+                    this.users = data as User[]
+                },
+                error => {
+
+                },
+                () => { // when complete
+                    this.loadingUsers = false;
+                }
+            );
+
+
+    }
+
 
     deleteUser(user){
 

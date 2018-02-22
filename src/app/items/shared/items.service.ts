@@ -8,12 +8,16 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
+import * as siteConfig from '../../config';
+
 @Injectable()
 export class ItemsService {
 
-  private url: string = "http://al-server.localhost.com/api/items";
+  private url: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.url = siteConfig.apiUrl + "items";
+  }
 
   getItems(){
     return this.http.get(this.url)

@@ -1,9 +1,20 @@
 <nav>
   <div class="nav-wrapper">
-    <a routerLink="" class="brand-logo">Angular Laravel</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <a routerLink="" class="brand-logo center">Angular Laravel</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li><a routerLink="/items" routerLinkActive="active">Items</a></li>
-      <li><a routerLink="/users" routerLinkActive="active">Usuarios</a></li>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="auth.isAuthenticated()">
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{auth.getCurrentUser().username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a routerLink="/users" routerLinkActive="active">Usuarios</a></li>
+          <li><a routerLink="/users" routerLinkActive="active">Usuarios 2</a></li>
+          <li class="divider"></li>
+          <li><a [routerLink]="['/login']">Salir</a></li>
+        </ul>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="!auth.isAuthenticated()">
+      <li><a [routerLink]="['/login']">Login</a></li>
     </ul>
   </div>
 </nav>

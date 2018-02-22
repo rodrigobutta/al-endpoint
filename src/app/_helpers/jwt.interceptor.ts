@@ -3,7 +3,7 @@
 // import { Observable } from 'rxjs/Observable';
 
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpErrorResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/of';
@@ -13,25 +13,38 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/materialize';
 import 'rxjs/add/operator/dematerialize';
 
+import { AuthenticationService } from '../_services/authentication.service';
+
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+
+    constructor(public auth: AuthenticationService) {}
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        // add authorization header with jwt token if available
-        let currentToken = JSON.parse(localStorage.getItem('currentToken'));
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.auth.getToken()}`
+            }
+        });
 
-        if (currentToken) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${currentToken}`
-                }
-            });
-        }
+        // return next.handle(request);
+        return next.handle(request).do((event: HttpEvent<any>) => {
+             if (event instanceof HttpResponse) {
+               // do stuff with response if you want
+             }
+           }, (err: any) => {
+             if (err instanceof HttpErrorResponse) {
+               if (err.status === 401) {
+                this.auth.logout();
+               }
+             }
+        });
 
-        return next.handle(request);
     }
-}
 
+
+}
 
 
 export let fakeBackendProvider = {

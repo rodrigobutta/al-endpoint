@@ -12,15 +12,38 @@ declare var swal: any;
 export class ItemsComponent implements OnInit {
 
   private items: Item[] = [];
+  private loadingItems: boolean = true;
 
   constructor(private itemsService: ItemsService) { }
 
     ngOnInit() {
 
-        this.itemsService.getItems()
-            .subscribe(data => this.items = data as Item[]);
+        this.getItems();
 
     }
+
+
+    getItems(){
+
+        this.loadingItems = true;
+
+        this.itemsService.getItems()
+            .subscribe(
+                data => {
+                    this.items = data as Item[]
+                },
+                error => {
+
+                },
+                () => { // when complete
+                    this.loadingItems = false;
+                }
+            );
+
+            // data => this.items = data as Item[]);
+
+    }
+
 
     deleteItem(item){
 

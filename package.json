@@ -32,7 +32,8 @@
     "rxjs": "^5.5.6",
     "satellizer": "^0.15.5",
     "systemjs": "^0.20.19",
-    "zone.js": "^0.8.20"
+    "zone.js": "^0.8.20",
+    "angular2-jwt": "latest"
   },
   "devDependencies": {
     "@angular/cli": "latest",
