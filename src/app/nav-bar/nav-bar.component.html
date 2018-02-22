@@ -1,7 +1,7 @@
 <nav>
   <div class="nav-wrapper">
     <a routerLink="" class="brand-logo center">Angular Laravel</a>
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    <ul id="nav-mobile" class="left hide-on-med-and-down" *ngIf="auth.isAuthenticated()">
       <li><a routerLink="/items" routerLinkActive="active">Items</a></li>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="auth.isAuthenticated()">
@@ -14,7 +14,7 @@
         </ul>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="!auth.isAuthenticated()">
-      <li><a [routerLink]="['/login']">Login</a></li>
+      <li><a [routerLink]="['/login']" class="waves-effect waves-light btn" routerLinkActive="hidden">Login</a></li>
     </ul>
   </div>
 </nav>

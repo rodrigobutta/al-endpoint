@@ -9,7 +9,8 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": [],
+    "types": [
+    ],
     "lib": [
       "es2016",
       "dom"
